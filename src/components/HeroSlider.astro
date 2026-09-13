@@ -1,0 +1,120 @@
+---
+interface Slide {
+  eyebrow: string;
+  titulo: string;
+  destacado?: string;
+  texto: string;
+  imagen: string;
+  alt: string;
+  cta: { href: string; label: string };
+  cta2?: { href: string; label: string };
+}
+
+interface Props { slides: Slide[]; interval?: number }
+const { slides, interval = 6500 } = Astro.props;
+---
+
+<section
+  id="hero"
+  class="relative h-[100svh] min-h-[600px] max-h-[900px] overflow-hidden bg-navy-950 text-white"
+  style={`--hero-interval:${interval}ms`}
+  data-interval={interval}
+  aria-roledescription="carrusel"
+  aria-label="Presentación"
+>
+  {slides.map((s, i) => (
+    <div class:list={['hero-slide', i === 0 && 'is-active']} role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${slides.length}`} aria-hidden={i !== 0}>
+      <img
+        src={s.imagen}
+        alt={s.alt}
+        class="absolute inset-0 h-full w-full object-cover"
+        width="1920" height="1280"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        fetchpriority={i === 0 ? 'high' : 'auto'}
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/65 to-navy-950/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-navy-950/30"></div>
+
+      <div class="container-x relative flex h-full items-center pt-24 pb-40">
+        <div class="hero-copy max-w-2xl">
+          <span class="eyebrow !text-brand-400">{s.eyebrow}</span>
+          <h1 class="mt-4 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+            {s.titulo}{s.destacado && <> <span class="gradient-text">{s.destacado}</span></>}
+          </h1>
+          <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">{s.texto}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href={s.cta.href} class="btn-primary">{s.cta.label}</a>
+            {s.cta2 && <a href={s.cta2.href} class="btn-ghost-light">{s.cta2.label}</a>}
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <!-- Controles -->
+  <div class="container-x absolute inset-x-0 bottom-24 z-10 flex items-center justify-between md:bottom-40">
+    <div class="flex items-center gap-2" role="tablist" aria-label="Seleccionar diapositiva">
+      {slides.map((_, i) => (
+        <button type="button" class:list={['hero-dot', i === 0 && 'is-active']} data-goto={i} role="tab" aria-selected={i === 0} aria-label={`Ir a la diapositiva ${i + 1}`}><span></span></button>
+      ))}
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" data-prev class="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 backdrop-blur-sm transition hover:bg-white/15" aria-label="Anterior">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button type="button" data-next class="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 backdrop-blur-sm transition hover:bg-white/15" aria-label="Siguiente">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <a href="#nosotros" class="absolute bottom-40 left-1/2 z-10 hidden -translate-x-1/2 text-white/60 hover:text-white md:block" aria-label="Bajar">
+    <svg class="h-6 w-6 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 3v18"/></svg>
+  </a>
+</section>
+
+<script>
+  const hero = document.getElementById('hero');
+  if (hero) {
+    const slides = Array.from(hero.querySelectorAll<HTMLElement>('.hero-slide'));
+    const dots = Array.from(hero.querySelectorAll<HTMLButtonElement>('.hero-dot'));
+    const interval = Number(hero.dataset.interval) || 6500;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let idx = 0;
+    let timer: number | undefined;
+
+    const show = (n: number) => {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => { s.classList.toggle('is-active', i === idx); s.setAttribute('aria-hidden', String(i !== idx)); });
+      dots.forEach((d, i) => {
+        d.classList.remove('is-active');
+        // reinicia la animación de la barra
+        void d.offsetWidth;
+        d.classList.toggle('is-active', i === idx);
+        d.setAttribute('aria-selected', String(i === idx));
+      });
+    };
+    const start = () => { if (reduce) return; stop(); timer = window.setInterval(() => show(idx + 1), interval); };
+    const stop = () => { if (timer) window.clearInterval(timer); };
+
+    hero.querySelector('[data-next]')?.addEventListener('click', () => { show(idx + 1); start(); });
+    hero.querySelector('[data-prev]')?.addEventListener('click', () => { show(idx - 1); start(); });
+    dots.forEach((d) => d.addEventListener('click', () => { show(Number(d.dataset.goto)); start(); }));
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+    // Swipe táctil
+    let x0 = 0;
+    hero.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) { show(dx < 0 ? idx + 1 : idx - 1); start(); }
+    });
+
+    show(0);
+    start();
+  }
+</script>

@@ -1,0 +1,20 @@
+---
+import Base from '@/layouts/Base.astro';
+import { getContacto } from '@/lib/wp';
+const c = await getContacto();
+---
+<Base title="Mensaje enviado" description="Gracias por contactar a Vortec Consulting." noindex>
+  <section class="section pt-40">
+    <div class="container-x max-w-2xl text-center">
+      <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+        <svg class="h-10 w-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h1 class="mt-6 text-3xl font-extrabold md:text-4xl">¡Mensaje enviado!</h1>
+      <p class="lead">Gracias por escribirnos. Le responderemos a su correo en menos de 24 horas hábiles.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn-primary">Volver al inicio</a>
+        <a href={`https://wa.me/${c.whatsapp}`} target="_blank" rel="noopener" class="btn-outline">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>

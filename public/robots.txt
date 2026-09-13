@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /enviar.php
+Disallow: /gracias
+Disallow: /admin/
+
+Sitemap: https://vortec-consulting.com/sitemap-index.xml

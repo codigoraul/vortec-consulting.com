@@ -1,0 +1,148 @@
+{
+  "contacto": {
+    "empresa": "Vortec Consulting",
+    "tagline": "Consultores y Capacitación",
+    "telefono": "+56 9 7668 4877",
+    "whatsapp": "56976684877",
+    "email": "contacto@vortec-consulting.com",
+    "direccion": "Av. Canal de la Luz 3696",
+    "comuna": "Puente Alto",
+    "ciudad": "Santiago, Región Metropolitana",
+    "horario": "Lunes a viernes, 9:00 a 18:00 hrs",
+    "mapaEmbed": "https://www.google.com/maps?q=Av.+Canal+de+la+Luz+3696,+Puente+Alto,+Chile&output=embed"
+  },
+  "servicios": [
+    {
+      "slug": "5s-y-lean-manufacturing",
+      "titulo": "5S y Lean Manufacturing",
+      "categoria": "consultoria",
+      "resumen": "Implementación de la metodología 5S y herramientas Lean para ordenar, estandarizar y eliminar desperdicios en planta.",
+      "descripcion": "<p>Acompañamos a su organización en la implementación de <strong>5S</strong> (Clasificar, Ordenar, Limpiar, Estandarizar y Sostener) y de herramientas <strong>Lean Manufacturing</strong> orientadas a reducir tiempos, desperdicios y costos operativos, mejorando la seguridad y la productividad de sus procesos.</p><p>Trabajamos en terreno con sus equipos, definiendo indicadores y rutinas de seguimiento para que la mejora se mantenga en el tiempo.</p>",
+      "dirigido_a": "",
+      "orden": 1,
+      "imagen_url": "/images/consultorias.webp",
+      "temario": "Diagnóstico inicial\n- Levantamiento de procesos y áreas críticas\n- Definición de indicadores y línea base\n\nImplementación 5S\n- Clasificar y ordenar\n- Limpieza y estandarización\n- Disciplina y auditorías 5S\n\nHerramientas Lean\n- Mapeo de flujo de valor (VSM)\n- Kaizen y mejora continua\n- Gestión visual y Hoshin Kanri"
+    },
+    {
+      "slug": "auditoria-a-proveedores",
+      "titulo": "Auditoría a proveedores",
+      "categoria": "consultoria",
+      "resumen": "Evaluación técnica y documental de proveedores para asegurar la calidad y la trazabilidad de su cadena de suministro.",
+      "descripcion": "<p>Realizamos <strong>auditorías de segunda parte</strong> a sus proveedores, evaluando sistemas de gestión, procesos productivos, controles de calidad y cumplimiento normativo. Entregamos un informe con hallazgos, riesgos y planes de acción priorizados.</p>",
+      "dirigido_a": "",
+      "orden": 2,
+      "imagen_url": "/images/hero-consultoria.webp",
+      "temario": "Alcance\n- Definición de criterios y listas de verificación\n- Planificación y coordinación con el proveedor\n\nEjecución\n- Auditoría documental y en terreno\n- Verificación de registros y trazabilidad\n\nCierre\n- Informe de hallazgos y no conformidades\n- Seguimiento de acciones correctivas"
+    },
+    {
+      "slug": "optimizacion-de-procesos-industriales",
+      "titulo": "Optimización de procesos industriales",
+      "categoria": "consultoria",
+      "resumen": "Análisis y rediseño de procesos para aumentar la eficiencia, reducir costos y mejorar la calidad del producto.",
+      "descripcion": "<p>Analizamos sus procesos productivos con herramientas de <strong>ingeniería industrial y análisis de causa raíz</strong> para identificar cuellos de botella, variabilidad y pérdidas. Proponemos e implementamos mejoras medibles junto a su equipo.</p>",
+      "dirigido_a": "",
+      "orden": 3,
+      "imagen_url": "/images/optimizacion-procesos.webp",
+      "temario": "Análisis\n- Diagramas de flujo y recogida de datos\n- Histogramas, Pareto y gráficos de control\n- Diagrama causa-efecto y los 5 ¿por qué?\n\nMejora\n- Reingeniería de procesos\n- Estandarización y control\n- Indicadores de desempeño (KPI)"
+    },
+    {
+      "slug": "laboratorios",
+      "titulo": "Consultoría para laboratorios",
+      "categoria": "consultoria",
+      "resumen": "Implementación y mantención de sistemas de gestión de laboratorio: NCh-ISO 17025, BPL, validación y metrología.",
+      "descripcion": "<p>Apoyamos a laboratorios de ensayo y calibración en la <strong>implementación de NCh-ISO/IEC 17025</strong>, buenas prácticas de laboratorio, validación de métodos, cálculo de incertidumbre y aseguramiento metrológico, preparándolos para procesos de acreditación y auditorías.</p>",
+      "dirigido_a": "",
+      "orden": 4,
+      "imagen_url": "/images/laboratorio.webp",
+      "temario": "Sistema de gestión\n- Diagnóstico frente a NCh-ISO/IEC 17025\n- Documentación y procedimientos\n- Formación de auditores internos\n\nTécnico\n- Validación de métodos analíticos\n- Estimación de incertidumbre\n- Trazabilidad y calibración de equipos"
+    },
+    {
+      "slug": "medio-ambiente",
+      "titulo": "Medio ambiente",
+      "categoria": "consultoria",
+      "resumen": "Asesoría en RILES, normativa ambiental aplicable y cumplimiento de requisitos legales para la industria.",
+      "descripcion": "<p>Asesoramos a empresas en el <strong>cumplimiento de la normativa ambiental</strong> vigente: residuos industriales líquidos (RILES), emisiones, residuos peligrosos y requisitos legales aplicables a su actividad, con planes de acción concretos.</p>",
+      "dirigido_a": "",
+      "orden": 5,
+      "imagen_url": "/images/medio-ambiente.webp",
+      "temario": "Diagnóstico ambiental\n- Identificación de requisitos legales aplicables\n- Evaluación de cumplimiento\n\nGestión\n- RILES y normativa asociada (DS 90, DS 46, DS 609)\n- Manejo de residuos peligrosos\n- Planes de mejora y seguimiento"
+    },
+    {
+      "slug": "certificaciones-iso-bap-17025-asc-global-gap",
+      "titulo": "Certificaciones ISO, BAP, 17025, ASC y GLOBAL G.A.P.",
+      "categoria": "capacitacion",
+      "resumen": "Interpretación de normas y formación de auditores internos para procesos de certificación y acreditación.",
+      "descripcion": "<p>Cursos de <strong>interpretación de normas</strong> y formación de auditores internos orientados a organizaciones que buscan certificarse o mantener su certificación en ISO 9001, ISO 14001, NCh-ISO/IEC 17025, BAP, ASC y GLOBAL G.A.P.</p>",
+      "dirigido_a": "Encargados de calidad, jefes de área y responsables de sistemas de gestión.",
+      "orden": 10,
+      "imagen_url": "/images/capacitaciones.webp",
+      "temario": "Contenidos\n- Estructura y requisitos de la norma\n- Interpretación práctica de cada cláusula\n- Documentación y registros\n- Auditoría interna: planificación, ejecución e informe\n- Preparación para la auditoría de certificación"
+    },
+    {
+      "slug": "validacion-de-metodos-y-calculo-de-incertidumbre",
+      "titulo": "Validación de métodos y cálculo de incertidumbre",
+      "categoria": "capacitacion",
+      "resumen": "Parámetros de desempeño, tipos de error y estimación de incertidumbre con ejercicios prácticos.",
+      "descripcion": "<p>Curso teórico-práctico para <strong>validar métodos analíticos</strong> y estimar la incertidumbre de medición según los requisitos de NCh-ISO/IEC 17025, con ejemplos y ejercicios aplicados a la realidad de cada laboratorio.</p>",
+      "dirigido_a": "Encargados de calidad, jefes de laboratorio y analistas de laboratorio.",
+      "orden": 11,
+      "imagen_url": "/images/laboratorio.webp",
+      "temario": "Métodos de validación\n- Normalizados o de referencia\n- Alternativos\n- Basados en métodos de referencia\n- Otros métodos\n\nCaracterización de las mediciones y sus tipos de error\n- Errores crasos\n- Errores sistemáticos\n- Errores aleatorios\n- Error total\n\nParámetros de desempeño en la validación\n- Límite de detección y cuantificación\n- Exactitud\n- Precisión (repetibilidad, reproducibilidad)\n- Confirmación de la identidad\n- Intervalo de trabajo\n- Selectividad y especificidad\n- Linealidad\n- Sensibilidad\n- Veracidad (sesgo y recuperación)\n- Robustez\n\nConceptos básicos de incertidumbre\n- Conceptos y definiciones de incertidumbre\n- Alcance y aplicación de la incertidumbre\n- Tipos de error (sistemáticos y aleatorios)\n- Diagrama de identificación de las fuentes de incertidumbre (espina de pescado)\n- Ejemplos y ejercicios prácticos"
+    },
+    {
+      "slug": "resolucion-de-no-conformidades-y-acciones-correctivas",
+      "titulo": "Resolución de no conformidades y acciones correctivas",
+      "categoria": "capacitacion",
+      "resumen": "Detección de no conformidades, ciclo de la calidad, mejora continua y herramientas de análisis de causa raíz.",
+      "descripcion": "<p>Curso orientado a fortalecer la <strong>gestión de no conformidades</strong> y la implementación eficaz de acciones correctivas y preventivas, aplicando el ciclo PHVA y herramientas de análisis de causa raíz.</p>",
+      "dirigido_a": "Encargados de calidad, jefes de área y analistas de laboratorio.",
+      "orden": 12,
+      "imagen_url": "/images/capacitaciones.webp",
+      "temario": "Definiciones y conceptos de no conformidad\n- Evidencia\n- Criterio\n- Detección de no conformidades\n- Alcance de una no conformidad\n- Acciones correctivas\n- Acciones preventivas\n- Auditoría interna/externa (primera, segunda y tercera parte)\n\nCiclo de la calidad\n- Planificar\n- Hacer\n- Revisar\n- Actuar\n\nMejora continua y sus herramientas\n- Reingeniería\n- Lean Manufacturing\n- 5S\n- Hoshin Planning\n\nHerramientas para el análisis de causa raíz\n- Diagrama de flujo (simbología)\n- Hoja de verificación / recogida de datos\n- Distribución de frecuencia\n- Histogramas\n- Diagrama de Pareto\n- Diagrama de causa y efecto\n- Diagrama de dispersión\n- Gráficos de control por atributos\n- Esquema de los cinco ¿por qué?"
+    },
+    {
+      "slug": "buenas-practicas-de-laboratorio-bpl",
+      "titulo": "Buenas prácticas de laboratorio (BPM y BPL)",
+      "categoria": "capacitacion",
+      "resumen": "Calidad y BPL, manejo seguro de reactivos y operación correcta de equipos de medición.",
+      "descripcion": "<p>Curso práctico de <strong>buenas prácticas de laboratorio</strong> que cubre desde los fundamentos de calidad y trazabilidad hasta el manejo seguro de reactivos y la correcta operación de los equipos de medición.</p>",
+      "dirigido_a": "Encargados de calidad, jefes de laboratorio y analistas de laboratorio.",
+      "orden": 13,
+      "imagen_url": "/images/hero-laboratorio.webp",
+      "temario": "Introducción a la calidad y BPL\n- Definiciones y conceptos de calidad\n- Función integral del análisis químico\n- Lecturas y factores de corrección\n- Trazabilidad química\n- Sistema internacional de medida\n- Concepto de buenas prácticas de laboratorio (BPL)\n- Clasificación de materiales volumétricos\n- Manipulación de material de vidrio y su limpieza\n- Medición de volúmenes\n- Riesgos asociados a la mala manipulación\n\nReactivos y sus riesgos\n- Tipos de reactivos y sus purezas\n- Certificados de análisis y su interpretación\n- Hoja de seguridad y su interpretación\n- Clasificación de reactivos y sus incompatibilidades\n- Almacenamiento de reactivos y sus condiciones ambientales\n- Etiquetado de reactivos\n- Disposición y caracterización de residuos peligrosos\n- Uso de equipos de protección personal\n\nManejo de equipos de medición\n- Balanza analítica y balanza granataria\n- Estufas de aire forzado y convección natural\n- Mufla\n- Destilador / desionizador de agua\n- Espectrofotómetro\n- pH-metro\n- Conductivímetro\n- Termocuplas"
+    },
+    {
+      "slug": "cromatografia-liquida-hplc",
+      "titulo": "Cromatografía líquida de alta resolución (HPLC)",
+      "categoria": "capacitacion",
+      "resumen": "Fundamentos, técnicas, columnas, sistemas de inyección, fases móviles, bombas y detectores.",
+      "descripcion": "<p>Curso de <strong>cromatografía líquida de alta resolución</strong> que entrega los fundamentos teóricos y prácticos para operar, optimizar y resolver problemas en sistemas HPLC.</p>",
+      "dirigido_a": "Encargados de calidad, jefes de laboratorio y analistas de laboratorio.",
+      "orden": 14,
+      "imagen_url": "/images/laboratorio.webp",
+      "temario": "Nociones y fundamentos de la cromatografía líquida\n- Técnicas cromatográficas: fase normal, fase reversa y no convencionales\n\nTipos de columnas cromatográficas\n- Funcionamiento\n- Características de las columnas\n- Precolumnas\n- Uso y precauciones\n\nSistemas de inyección\n- Manual\n- Automático\n\nFases móviles\n- Tipos de fases móviles\n- Tipos de solventes y sus mezclas\n- Horno, programación y control de temperatura\n\nTipos de bombas\n- Recíprocas\n- Desplazamiento\n- Presión constante\n\nTipos de detectores\n- UV-VIS\n- DAD\n- Fluorescencia\n- Índice de refracción\n- Espectrómetro de masas"
+    },
+    {
+      "slug": "cromatografia-gaseosa-gc-fid-gc-ms",
+      "titulo": "Cromatografía gaseosa GC-FID y GC-MS/MS",
+      "categoria": "capacitacion",
+      "resumen": "Columnas, gases, inyectores, detectores, muestreadores, validación y troubleshooting en GC.",
+      "descripcion": "<p>Curso de <strong>cromatografía de gases</strong> que abarca desde los fundamentos del proceso cromatográfico hasta la operación del equipo, el procesamiento de datos y la resolución de problemas, adaptado al equipo del cliente.</p>",
+      "dirigido_a": "Encargados de calidad, jefes de laboratorio y analistas de laboratorio.",
+      "orden": 15,
+      "imagen_url": "/images/hero-laboratorio.webp",
+      "temario": "Nociones y fundamentos de la cromatografía gaseosa\n- Proceso cromatográfico\n- Tipos de columnas de GC: funcionamiento, características (capilares y empacadas), uso y precauciones\n- Gases\n- Inyectores: tipos y funcionamiento\n- Horno, programación y control de temperatura\n- Separación isotérmica y con gradiente de temperatura\n- Detectores: tipos y funcionamiento (FID, ECD, TCD, FPD, NPD)\n\nMuestreadores\n- Líquidos\n- Head Space\n- ATD\n\nManejo del equipo (adaptado al equipo del cliente)\n- Identificación\n- Calibración\n- Cuantificación\n- Validación de métodos\n- Mantenimiento de rutina y preventivo\n- Detector de conductividad térmica (TCD)\n- Detector de ionización de llama (FID)\n- Detector de captura electrónica (ECD y µECD)\n- Detector fotométrico de llama (FPD)\n- Detector de nitrógeno y fósforo (NPD)\n- Detector de masa y doble masa\n\nProcesamiento de datos y troubleshooting\n- Integración de los picos cromatográficos y su optimización (línea base)\n- Análisis cualitativo y cuantitativo\n- Problemas generales de los sistemas cromatográficos\n- Problemas de los sistemas de inyección y columnas\n- Problemas de resolución de los sistemas de detección"
+    },
+    {
+      "slug": "analisis-por-icp-oes-e-icp-ms",
+      "titulo": "Análisis por ICP-OES e ICP-MS",
+      "categoria": "capacitacion",
+      "resumen": "Fundamentos del plasma inductivamente acoplado, componentes del equipo, configuraciones y troubleshooting.",
+      "descripcion": "<p>Proporcionar a los participantes los conocimientos y herramientas para entender los conceptos asociados al <strong>análisis con plasma inductivamente acoplado (ICP)</strong>, sus diferentes usos y configuraciones para detectar diversos analitos de interés.</p><ul><li>Conocer la terminología, definiciones y conceptos relacionados con la medición de metales por métodos ICP-OES e ICP-MS.</li><li>Conocer los diferentes componentes de un equipo ICP.</li><li>Conocer los sistemas ópticos y de masas acoplados a equipos ICP.</li><li>Conocer las diferentes configuraciones de los equipos ICP.</li><li>Ser capaz de realizar el procesamiento de datos y la resolución de problemas comunes en ICP (troubleshooting).</li></ul>",
+      "dirigido_a": "Encargados de calidad, jefes de laboratorio y analistas de laboratorio.",
+      "orden": 16,
+      "imagen_url": "/images/laboratorio.webp",
+      "temario": "Fundamentos\n- Selección de la técnica adecuada: comparación AAS, ICP-OES e ICP-MS\n- Fundamentos de la técnica de ICP\n- Rango de trabajo\n- Aplicaciones en las diferentes matrices\n- Limitaciones metodológicas\n- Interferentes\n- Efecto de la matriz\n\nElementos del equipo ICP-OES\n- Nociones y fundamentos de la técnica\n- Análisis de elementos mayoritarios, trazas y ultratrazas\n- Instrumentación de un ICP-OES: equipos secuenciales y simultáneos\n- Sistema de introducción de muestras\n- Visión axial, radial y dual (comparación)\n- Aplicación: análisis de muestras\n\nElementos del equipo ICP-MS\n- Nociones y fundamentos de la técnica\n- Controles generales del equipo\n- Encendido del plasma y visualización de parámetros\n- Parámetros de optimización (tuning)\n- Interfaz plasma/vacío\n- Enfoque de iones, celda de colisión/reacción\n- Separación de iones"
+    }
+  ]
+}

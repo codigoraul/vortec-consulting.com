@@ -1,0 +1,13 @@
+---
+import ServicioDetalle from '@/components/ServicioDetalle.astro';
+import { getServiciosPorCategoria } from '@/lib/wp';
+import type { Servicio } from '@/lib/types';
+
+export async function getStaticPaths() {
+  const servicios = await getServiciosPorCategoria('consultoria');
+  return servicios.map((s) => ({ params: { slug: s.slug }, props: { servicio: s } }));
+}
+interface Props { servicio: Servicio }
+const { servicio } = Astro.props;
+---
+<ServicioDetalle servicio={servicio} />

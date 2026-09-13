@@ -1,0 +1,21 @@
+---
+import type { Servicio } from '@/lib/types';
+import { rutaServicio } from '@/lib/wp';
+interface Props { servicio: Servicio; delay?: number }
+const { servicio: s, delay = 0 } = Astro.props;
+const etiqueta = s.categoria === 'consultoria' ? 'Consultoría' : 'Capacitación';
+---
+<a href={rutaServicio(s)} class="card reveal group flex flex-col overflow-hidden" style={`transition-delay:${delay}ms`}>
+  <div class="relative aspect-[16/10] overflow-hidden bg-navy-900">
+    <img src={s.imagen} alt={s.titulo} loading="lazy" decoding="async" width="1200" height="750" class="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]" />
+    <span class:list={['absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white', s.categoria === 'consultoria' ? 'bg-navy-900/85' : 'bg-brand-600/90']}>{etiqueta}</span>
+  </div>
+  <div class="flex flex-1 flex-col p-6">
+    <h3 class="text-lg font-bold leading-snug group-hover:text-brand-600">{s.titulo}</h3>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">{s.resumen}</p>
+    <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">
+      Ver detalle
+      <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </span>
+  </div>
+</a>

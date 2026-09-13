@@ -1,0 +1,122 @@
+---
+import Base from '@/layouts/Base.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { getServicios, getContacto, rutaCategoria } from '@/lib/wp';
+import type { Servicio } from '@/lib/types';
+
+interface Props { servicio: Servicio }
+const { servicio: s } = Astro.props;
+const contacto = await getContacto();
+const relacionados = (await getServicios()).filter((x) => x.categoria === s.categoria && x.slug !== s.slug).slice(0, 3);
+const etiqueta = s.categoria === 'consultoria' ? 'Consultoría' : 'Capacitación';
+const tituloTemario = s.categoria === 'consultoria' ? 'Etapas del servicio' : 'Temario del curso';
+const msgWa = encodeURIComponent(`Hola, quiero información sobre "${s.titulo}".`);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': s.categoria === 'capacitacion' ? 'Course' : 'Service',
+  name: s.titulo,
+  description: s.resumen,
+  provider: { '@type': 'Organization', name: 'Vortec Consulting', url: 'https://vortec-consulting.com' },
+  ...(s.categoria === 'capacitacion' && s.dirigidoA ? { audience: { '@type': 'Audience', audienceType: s.dirigidoA } } : {}),
+};
+---
+
+<Base title={s.titulo} description={s.resumen} image={s.imagen}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="relative overflow-hidden bg-navy-950 pt-36 pb-20 text-white">
+    <img src={s.imagen} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" width="1920" height="1280" />
+    <div class="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/40"></div>
+    <div class="container-x relative">
+      <nav aria-label="Migas de pan" class="text-sm text-white/60">
+        <a href="/" class="hover:text-white">Inicio</a> <span class="mx-2">/</span>
+        <a href={rutaCategoria(s.categoria)} class="hover:text-white">{etiqueta === 'Consultoría' ? 'Consultorías' : 'Capacitaciones'}</a>
+      </nav>
+      <span class="eyebrow mt-5 !text-brand-400">{etiqueta}</span>
+      <h1 class="mt-3 max-w-3xl text-[36px] font-extrabold leading-tight tracking-[.1rem] text-white">{s.titulo}</h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/75">{s.resumen}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_380px]">
+      <article>
+        <div class="prose-vortec text-base reveal" set:html={s.descripcion} />
+
+        {s.dirigidoA && (
+          <div class="reveal mt-8 flex gap-4 rounded-2xl border border-brand-100 bg-brand-50 p-5">
+            <svg class="h-6 w-6 shrink-0 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+            <div>
+              <p class="text-sm font-bold text-navy-900">Dirigido a</p>
+              <p class="mt-1 text-sm text-ink/85">{s.dirigidoA}</p>
+            </div>
+          </div>
+        )}
+
+        {s.temario.length > 0 && (
+          <div class="mt-12">
+            <h2 class="reveal text-2xl font-bold">{tituloTemario}</h2>
+            <div class="mt-6 space-y-4">
+              {s.temario.map((m, i) => (
+                <details class="reveal group rounded-2xl border border-line bg-white open:shadow-card" open={i === 0}>
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold [&::-webkit-details-marker]:hidden">
+                    <span class="flex items-center gap-3">
+                      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-900 text-xs font-bold text-brand-400">{String(i + 1).padStart(2, '0')}</span>
+                      {m.titulo || `Módulo ${i + 1}`}
+                    </span>
+                    <svg class="h-5 w-5 shrink-0 text-muted transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <ul class="grid gap-2 border-t border-line px-5 py-4 text-sm text-ink/85 sm:grid-cols-2">
+                    {m.items.map((it) => <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>{it}</li>)}
+                  </ul>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 lg:self-start">
+        <div class="reveal rounded-2xl bg-navy-900 p-6 text-white">
+          <h2 class="text-lg font-bold text-white">Solicitar información</h2>
+          <p class="mt-2 text-sm text-white/70">Le enviamos una propuesta técnica y económica a la medida.</p>
+          <a href={`https://wa.me/${contacto.whatsapp}?text=${msgWa}`} target="_blank" rel="noopener" class="btn-primary mt-5 w-full">WhatsApp {contacto.telefono}</a>
+          <a href={`mailto:${contacto.email}?subject=${encodeURIComponent('Consulta: ' + s.titulo)}`} class="btn-ghost-light mt-3 w-full">{contacto.email}</a>
+        </div>
+        <div class="reveal rounded-2xl border border-line p-6">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-muted">Modalidad</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> In-company (en sus instalaciones)</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Remota / online</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Temario adaptable a sus equipos y procesos</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section bg-gray-50">
+    <div class="container-x">
+      <div class="reveal">
+        <span class="eyebrow">Cotizar</span>
+        <h2 class="h-section">Solicite una propuesta para “{s.titulo}”</h2>
+      </div>
+      <div class="mt-8 max-w-3xl">
+        <ContactForm servicioInicial={s.slug} />
+      </div>
+    </div>
+  </section>
+
+  {relacionados.length > 0 && (
+    <section class="section">
+      <div class="container-x">
+        <h2 class="reveal text-2xl font-bold">También le puede interesar</h2>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {relacionados.map((r, i) => <ServiceCard servicio={r} delay={i * 90} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

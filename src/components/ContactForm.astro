@@ -1,0 +1,66 @@
+---
+import { getServicios } from '@/lib/wp';
+interface Props { servicioInicial?: string }
+const { servicioInicial } = Astro.props;
+const servicios = await getServicios();
+---
+<form action="/enviar.php" method="post" class="grid gap-5 sm:grid-cols-2" id="contact-form" novalidate>
+  <!-- Honeypot anti-spam -->
+  <input type="text" name="sitio_web" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  <div>
+    <label for="nombre" class="mb-1.5 block text-sm font-semibold">Nombre y apellido <span class="text-brand-600">*</span></label>
+    <input id="nombre" name="nombre" type="text" required autocomplete="name" class="field" placeholder="Tu nombre" />
+  </div>
+  <div>
+    <label for="empresa" class="mb-1.5 block text-sm font-semibold">Empresa</label>
+    <input id="empresa" name="empresa" type="text" autocomplete="organization" class="field" placeholder="Nombre de la empresa" />
+  </div>
+  <div>
+    <label for="email" class="mb-1.5 block text-sm font-semibold">Correo electrónico <span class="text-brand-600">*</span></label>
+    <input id="email" name="email" type="email" required autocomplete="email" class="field" placeholder="correo@empresa.cl" />
+  </div>
+  <div>
+    <label for="telefono" class="mb-1.5 block text-sm font-semibold">Teléfono</label>
+    <input id="telefono" name="telefono" type="tel" autocomplete="tel" class="field" placeholder="+56 9 1234 5678" />
+  </div>
+  <div class="sm:col-span-2">
+    <label for="servicio" class="mb-1.5 block text-sm font-semibold">Servicio de interés</label>
+    <select id="servicio" name="servicio" class="field">
+      <option value="">Selecciona un servicio (opcional)</option>
+      <optgroup label="Consultorías">
+        {servicios.filter((s) => s.categoria === 'consultoria').map((s) => <option value={s.titulo} selected={s.slug === servicioInicial}>{s.titulo}</option>)}
+      </optgroup>
+      <optgroup label="Capacitaciones">
+        {servicios.filter((s) => s.categoria === 'capacitacion').map((s) => <option value={s.titulo} selected={s.slug === servicioInicial}>{s.titulo}</option>)}
+      </optgroup>
+    </select>
+  </div>
+  <div class="sm:col-span-2">
+    <label for="mensaje" class="mb-1.5 block text-sm font-semibold">Mensaje <span class="text-brand-600">*</span></label>
+    <textarea id="mensaje" name="mensaje" rows="5" required class="field" placeholder="Cuéntanos qué necesitas: tipo de servicio, número de participantes, plazos…"></textarea>
+  </div>
+  <div class="sm:col-span-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-xs text-muted">Responderemos a tu correo en menos de 24 horas hábiles.</p>
+    <button type="submit" class="btn-primary">
+      Enviar mensaje
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.27 3.13a.5.5 0 01.7-.6l17 8.5a.5.5 0 010 .9l-17 8.5a.5.5 0 01-.7-.6L6 12zm0 0h6"/></svg>
+    </button>
+  </div>
+</form>
+
+<style>
+  @reference "@/styles/global.css";
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70
+           transition focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-400/20;
+  }
+  .field:user-invalid { @apply border-red-400; }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); }
+  });
+</script>
