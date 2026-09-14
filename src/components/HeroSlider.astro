@@ -1,4 +1,6 @@
 ---
+import { withBase } from '@/lib/url';
+
 interface Slide {
   eyebrow: string;
   titulo: string;
@@ -25,7 +27,7 @@ const { slides, interval = 6500 } = Astro.props;
   {slides.map((s, i) => (
     <div class:list={['hero-slide', i === 0 && 'is-active']} role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${slides.length}`} aria-hidden={i !== 0}>
       <img
-        src={s.imagen}
+        src={withBase(s.imagen)}
         alt={s.alt}
         class="absolute inset-0 h-full w-full object-cover"
         width="1920" height="1280"
@@ -44,8 +46,8 @@ const { slides, interval = 6500 } = Astro.props;
           </h1>
           <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">{s.texto}</p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href={s.cta.href} class="btn-primary">{s.cta.label}</a>
-            {s.cta2 && <a href={s.cta2.href} class="btn-ghost-light">{s.cta2.label}</a>}
+            <a href={withBase(s.cta.href)} class="btn-primary">{s.cta.label}</a>
+            {s.cta2 && <a href={withBase(s.cta2.href)} class="btn-ghost-light">{s.cta2.label}</a>}
           </div>
         </div>
       </div>

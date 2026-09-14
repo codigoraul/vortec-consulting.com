@@ -11,6 +11,7 @@
 import type { Contacto, Modulo, Servicio, Categoria } from './types';
 import { serviciosEstaticos } from '@/data/servicios';
 import { contactoEstatico } from '@/data/contacto';
+import { withBase } from './url';
 
 const WP_URL = (import.meta.env.WP_URL ?? '').replace(/\/$/, '');
 const TIMEOUT_MS = 8000;
@@ -120,7 +121,7 @@ export function fuenteDeDatos(): 'wordpress' | 'estatico' {
 
 /** Ruta pública de una categoría y de un servicio. */
 export function rutaCategoria(cat: Categoria): string {
-  return cat === 'consultoria' ? '/consultorias' : '/capacitaciones';
+  return withBase(cat === 'consultoria' ? '/consultorias' : '/capacitaciones');
 }
 export function rutaServicio(s: Servicio): string {
   return `${rutaCategoria(s.categoria)}/${s.slug}`;

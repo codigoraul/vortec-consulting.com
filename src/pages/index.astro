@@ -3,6 +3,7 @@ import Base from '@/layouts/Base.astro';
 import HeroSlider from '@/components/HeroSlider.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { getServiciosPorCategoria, getContacto } from '@/lib/wp';
+import { withBase } from '@/lib/url';
 import { clientes } from '@/data/clientes';
 
 const consultorias = await getServiciosPorCategoria('consultoria');
@@ -87,7 +88,7 @@ const stats = [
     <div class="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
       <div class="reveal relative">
         <div class="absolute -left-6 -top-6 h-40 w-40 rounded-3xl bg-brand-100"></div>
-        <img src="/images/nosotros.webp" alt="Profesional trabajando en un laboratorio industrial" width="1400" height="933" loading="lazy" decoding="async" class="relative rounded-3xl object-cover shadow-card-hover" />
+        <img src={withBase('/images/nosotros.webp')} alt="Profesional trabajando en un laboratorio industrial" width="1400" height="933" loading="lazy" decoding="async" class="relative rounded-3xl object-cover shadow-card-hover" />
         <div class="absolute -bottom-6 -right-4 hidden rounded-2xl bg-navy-900 p-5 text-white shadow-xl sm:block">
           <p class="text-3xl font-extrabold gradient-text">17025</p>
           <p class="mt-1 text-xs text-white/70">NCh-ISO/IEC · acreditación<br />de laboratorios</p>
@@ -111,7 +112,7 @@ const stats = [
           ))}
         </ul>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/consultorias" class="btn-primary">Conocer consultorías</a>
+          <a href={withBase('/consultorias')} class="btn-primary">Conocer consultorías</a>
           <a href={`https://wa.me/${contacto.whatsapp}`} target="_blank" rel="noopener" class="btn-outline">Escríbenos por WhatsApp</a>
         </div>
       </div>
@@ -139,7 +140,7 @@ const stats = [
           <h2 class="h-section">Soluciones a medida para su operación</h2>
           <p class="lead">Diagnóstico, implementación y seguimiento en terreno junto a su equipo.</p>
         </div>
-        <a href="/consultorias" class="btn-outline shrink-0">Ver todas las consultorías</a>
+        <a href={withBase('/consultorias')} class="btn-outline shrink-0">Ver todas las consultorías</a>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {consultorias.slice(0, 3).map((s, i) => <ServiceCard servicio={s} delay={i * 90} />)}
@@ -156,7 +157,7 @@ const stats = [
           <h2 class="h-section">Cursos técnicos para analistas y encargados de calidad</h2>
           <p class="lead">Programas teórico-prácticos, in-company o en modalidad remota, con temario adaptable.</p>
         </div>
-        <a href="/capacitaciones" class="btn-outline shrink-0">Ver todas las capacitaciones</a>
+        <a href={withBase('/capacitaciones')} class="btn-outline shrink-0">Ver todas las capacitaciones</a>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {capacitaciones.slice(0, 6).map((s, i) => <ServiceCard servicio={s} delay={i * 90} />)}
@@ -197,7 +198,7 @@ const stats = [
             <p class="mt-3 max-w-xl text-white/75">Cuéntenos su necesidad y le enviaremos una propuesta técnica y económica a medida.</p>
           </div>
           <div class="flex flex-wrap gap-3">
-            <a href="/contacto" class="btn-primary">Solicitar cotización</a>
+            <a href={withBase('/contacto')} class="btn-primary">Solicitar cotización</a>
             <a href={`https://wa.me/${contacto.whatsapp}`} target="_blank" rel="noopener" class="btn-ghost-light">WhatsApp</a>
           </div>
         </div>

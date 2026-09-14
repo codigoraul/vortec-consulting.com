@@ -3,6 +3,7 @@ import Base from '@/layouts/Base.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { getServicios, getContacto, rutaCategoria } from '@/lib/wp';
+import { withBase } from '@/lib/url';
 import type { Servicio } from '@/lib/types';
 
 interface Props { servicio: Servicio }
@@ -27,11 +28,11 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <section class="relative overflow-hidden bg-navy-950 pt-36 pb-20 text-white">
-    <img src={s.imagen} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" width="1920" height="1280" />
+    <img src={withBase(s.imagen)} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" width="1920" height="1280" />
     <div class="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/40"></div>
     <div class="container-x relative">
       <nav aria-label="Migas de pan" class="text-sm text-white/60">
-        <a href="/" class="hover:text-white">Inicio</a> <span class="mx-2">/</span>
+        <a href={withBase('/')} class="hover:text-white">Inicio</a> <span class="mx-2">/</span>
         <a href={rutaCategoria(s.categoria)} class="hover:text-white">{etiqueta === 'Consultoría' ? 'Consultorías' : 'Capacitaciones'}</a>
       </nav>
       <span class="eyebrow mt-5 !text-brand-400">{etiqueta}</span>

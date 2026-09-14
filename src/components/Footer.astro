@@ -1,6 +1,7 @@
 ---
 import type { Contacto } from '@/lib/types';
 import { getServiciosPorCategoria, rutaServicio } from '@/lib/wp';
+import { withBase } from '@/lib/url';
 
 interface Props { contacto: Contacto }
 const { contacto } = Astro.props;
@@ -13,7 +14,7 @@ const year = new Date().getFullYear();
   <div class="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-brand-600/20 blur-3xl"></div>
   <div class="container-x relative grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12">
     <div class="lg:col-span-4">
-      <img src="/logo-blanco.svg" alt="Vortec Consulting" width="220" height="69" class="h-16 w-auto" loading="lazy" />
+      <img src={withBase('/logo-blanco.svg')} alt="Vortec Consulting" width="220" height="69" class="h-16 w-auto" loading="lazy" />
       <p class="mt-5 max-w-sm text-sm leading-relaxed">
         Consultoría y capacitación técnica para laboratorios e industria: calidad, acreditación NCh-ISO/IEC 17025,
         instrumentación analítica, mejora continua y medio ambiente.
@@ -36,7 +37,7 @@ const year = new Date().getFullYear();
       <h3 class="text-sm font-bold uppercase tracking-wider text-white">Capacitaciones</h3>
       <ul class="mt-4 space-y-2.5 text-sm">
         {capacitaciones.map((s) => <li><a href={rutaServicio(s)} class="hover:text-brand-400">{s.titulo}</a></li>)}
-        <li><a href="/capacitaciones" class="font-semibold text-brand-400 hover:text-brand-300">Ver todas →</a></li>
+        <li><a href={withBase('/capacitaciones')} class="font-semibold text-brand-400 hover:text-brand-300">Ver todas →</a></li>
       </ul>
     </div>
 

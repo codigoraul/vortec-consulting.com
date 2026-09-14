@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { getServiciosPorCategoria, getContacto } from '@/lib/wp';
+import { withBase } from '@/lib/url';
 import type { Categoria } from '@/lib/types';
 
 interface Props {
@@ -24,10 +25,10 @@ const nombre = categoria === 'consultoria' ? 'Consultorías' : 'Capacitaciones';
 
 <Base title={title} description={description} image={imagen}>
   <section class="relative overflow-hidden bg-navy-950 pt-36 pb-20 text-white">
-    <img src={imagen} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-25" width="1920" height="1280" />
+    <img src={withBase(imagen)} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-25" width="1920" height="1280" />
     <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 to-navy-950"></div>
     <div class="container-x relative">
-      <nav aria-label="Migas de pan" class="text-sm text-white/60"><a href="/" class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">{nombre}</span></nav>
+      <nav aria-label="Migas de pan" class="text-sm text-white/60"><a href={withBase('/')} class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">{nombre}</span></nav>
       <h1 class="mt-4 h-page">{h1}</h1>
       <p class="mt-4 max-w-2xl text-lg text-white/75">{intro}</p>
     </div>
@@ -64,7 +65,7 @@ const nombre = categoria === 'consultoria' ? 'Consultorías' : 'Capacitaciones';
         <h3 class="text-2xl font-bold text-white">¿No encuentra lo que busca?</h3>
         <p class="mt-3 text-white/75">Diseñamos {categoria === 'consultoria' ? 'programas de consultoría' : 'cursos'} a la medida de sus equipos, matrices y procesos. Cuéntenos su necesidad y le enviamos una propuesta.</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/contacto" class="btn-primary">Conversemos</a>
+          <a href={withBase('/contacto')} class="btn-primary">Conversemos</a>
           <a href={`mailto:${contacto.email}`} class="btn-ghost-light">{contacto.email}</a>
         </div>
       </div>

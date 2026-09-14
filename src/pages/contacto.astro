@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { getContacto } from '@/lib/wp';
+import { withBase } from '@/lib/url';
 const c = await getContacto();
 ---
 
@@ -10,10 +11,10 @@ const c = await getContacto();
   description={`Solicite una cotización de consultoría o capacitación. WhatsApp ${c.telefono}, ${c.email}. ${c.direccion}, ${c.comuna}, Santiago.`}
 >
   <section class="relative overflow-hidden bg-navy-950 pt-36 pb-20 text-white">
-    <img src="/images/hero-capacitacion.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-25" width="1920" height="1281" />
+    <img src={withBase('/images/hero-capacitacion.webp')} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-25" width="1920" height="1281" />
     <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 to-navy-950"></div>
     <div class="container-x relative">
-      <nav aria-label="Migas de pan" class="text-sm text-white/60"><a href="/" class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">Contacto</span></nav>
+      <nav aria-label="Migas de pan" class="text-sm text-white/60"><a href={withBase('/')} class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">Contacto</span></nav>
       <h1 class="mt-4 text-[36px] font-extrabold leading-tight tracking-[.1rem] text-white">Contáctenos</h1>
       <p class="mt-4 max-w-2xl text-lg text-white/75">Cuéntenos qué necesita y le responderemos con una propuesta a la medida.</p>
     </div>

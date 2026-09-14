@@ -24,6 +24,7 @@ jobs:
         run: npm run build
         env:
           WP_URL: ${{ secrets.WP_URL }}
+          BASE_PATH: /prueba
 
       - name: Deploy por FTP a /prueba
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

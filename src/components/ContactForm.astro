@@ -1,10 +1,11 @@
 ---
 import { getServicios } from '@/lib/wp';
+import { withBase } from '@/lib/url';
 interface Props { servicioInicial?: string }
 const { servicioInicial } = Astro.props;
 const servicios = await getServicios();
 ---
-<form action="/enviar.php" method="post" class="grid gap-5 sm:grid-cols-2" id="contact-form" novalidate>
+<form action={withBase('/enviar.php')} method="post" class="grid gap-5 sm:grid-cols-2" id="contact-form" novalidate>
   <!-- Honeypot anti-spam -->
   <input type="text" name="sitio_web" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
