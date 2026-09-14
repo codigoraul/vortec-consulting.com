@@ -8,22 +8,9 @@ DirectoryIndex index.html
   RewriteRule ^admin(/|$) - [L]
   # Rutas antiguas
   RewriteRule ^servicios/?$ /consultorias [R=301,L]
-  # Evita 403: /consultorias y /capacitaciones son carpetas físicas (contienen las fichas
-  # de cada servicio/curso) sin index.html. Sirve internamente el .html equivalente, con o
-  # sin barra final, sin redirigir (una redirección aquí hace bucle con el "/" automático
-  # que Apache agrega a las carpetas reales).
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteCond %{REQUEST_URI} ^/(.*[^/])/?$
-  RewriteCond %{DOCUMENT_ROOT}/%1.html -f
-  RewriteRule ^ %1.html [L]
   # Forzar HTTPS
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-  # /servicios -> /servicios.html (build.format = "file")
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
 ErrorDocument 404 /404.html

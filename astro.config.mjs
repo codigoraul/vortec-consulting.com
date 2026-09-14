@@ -13,7 +13,10 @@ export default defineConfig({
   base,
   output: 'static',
   trailingSlash: 'never',
-  build: { format: 'file' },
+  // "directory": cada página genera carpeta/index.html (p. ej. consultorias/index.html),
+  // evitando el choque entre el archivo "consultorias.html" y la carpeta "consultorias/"
+  // (con las fichas de cada servicio) que causaba 403 / bucles de redirección en Apache.
+  build: { format: 'directory' },
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
 });
