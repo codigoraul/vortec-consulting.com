@@ -73,7 +73,9 @@ interface WpServicio {
 
 function mapServicio(s: WpServicio): Servicio {
   const cat: Categoria = s.meta?.categoria === 'capacitacion' ? 'capacitacion' : 'consultoria';
-  const imagenWp = s._embedded?.['wp:featuredmedia']?.[0]?.source_url || s.meta?.imagen_url;
+  // Las fotos las controla el proyecto (src/data/servicios.ts) por slug; la destacada de WP es solo respaldo.
+  const imagenLocal = serviciosEstaticos.find((e) => e.slug === s.slug)?.imagen;
+  const imagenWp = imagenLocal || s._embedded?.['wp:featuredmedia']?.[0]?.source_url || s.meta?.imagen_url;
   return {
     slug: s.slug,
     titulo: decode(s.title.rendered),
