@@ -26,7 +26,7 @@ const slides = [
     titulo: 'Optimizamos sus procesos',
     destacado: 'con resultados medibles',
     texto: '5S y Lean Manufacturing, auditoría a proveedores, optimización de procesos industriales y asesoría en normativa ambiental, directamente en su planta.',
-    imagen: '/images/hero-consultoria.webp',
+    imagen: '/images/hero-procesos.webp',
     alt: 'Inspector de control de calidad revisando producción en una planta industrial',
     cta: { href: '/consultorias', label: 'Ver consultorías' },
     cta2: { href: '/contacto', label: 'Conversemos' },
@@ -75,7 +75,7 @@ const stats = [
             <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
               <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d={p.icon}/></svg>
             </div>
-            <h3 class="mt-4 text-base font-bold">{p.titulo}</h3>
+            <h3 class="mt-4 text-lg font-bold">{p.titulo}</h3>
             <p class="mt-2 text-sm leading-relaxed text-muted">{p.texto}</p>
           </div>
         ))}
@@ -88,7 +88,7 @@ const stats = [
     <div class="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
       <div class="reveal relative">
         <div class="absolute -left-6 -top-6 h-40 w-40 rounded-3xl bg-brand-100"></div>
-        <img src={withBase('/images/nosotros.webp')} alt="Profesional trabajando en un laboratorio industrial" width="1400" height="933" loading="lazy" decoding="async" class="relative rounded-3xl object-cover shadow-card-hover" />
+        <img src={withBase('/images/nosotros-equipo.webp')} alt="Consultor de Vortec revisando resultados con un analista de laboratorio" width="1400" height="933" loading="lazy" decoding="async" class="relative rounded-3xl object-cover shadow-card-hover" />
         <div class="absolute -bottom-6 -right-4 hidden rounded-2xl bg-navy-900 p-5 text-white shadow-xl sm:block">
           <p class="text-3xl font-extrabold gradient-text">17025</p>
           <p class="mt-1 text-xs text-white/70">NCh-ISO/IEC · acreditación<br />de laboratorios</p>

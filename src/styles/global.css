@@ -40,7 +40,7 @@
   .eyebrow::before { content: ""; @apply h-px w-8 bg-brand-500; }
 
   /* Título de las páginas interiores (bajo el breadcrumb) */
-  .h-page { font-size: 36px; letter-spacing: .1rem; @apply font-extrabold leading-tight text-white; }
+  .h-page { @apply text-[26px] font-extrabold leading-[1.15] tracking-[.02em] text-white md:text-[34px] lg:text-[38px] md:tracking-[.04em]; }
 
   .h-section { @apply mt-3 text-3xl font-bold leading-tight md:text-4xl lg:text-[2.6rem]; }
   .lead { @apply mt-4 text-lg leading-relaxed text-muted; }

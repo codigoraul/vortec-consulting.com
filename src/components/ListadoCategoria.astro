@@ -24,13 +24,13 @@ const nombre = categoria === 'consultoria' ? 'Consultorías' : 'Capacitaciones';
 ---
 
 <Base title={title} description={description} image={imagen}>
-  <section class="relative overflow-hidden bg-navy-950 pt-36 pb-20 text-white">
-    <img src={withBase(imagen)} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-25" width="1920" height="1280" />
-    <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 to-navy-950"></div>
+  <section class="relative overflow-hidden bg-navy-950 pt-[110px] pb-9 text-white md:pt-[164px] md:pb-14">
+    <img src={withBase(imagen)} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-55" width="1920" height="1280" />
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-950/45 via-navy-950/60 to-navy-950/85"></div>
     <div class="container-x relative">
-      <nav aria-label="Migas de pan" class="text-sm text-white/60"><a href={withBase('/')} class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">{nombre}</span></nav>
-      <h1 class="mt-4 h-page">{h1}</h1>
-      <p class="mt-4 max-w-2xl text-lg text-white/75">{intro}</p>
+      <nav aria-label="Migas de pan" class="hidden text-sm text-white/60 md:block"><a href={withBase('/')} class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">{nombre}</span></nav>
+      <h1 class="h-page mt-3">{h1}</h1>
+      <p class="mt-3 hidden max-w-2xl text-[17px] leading-relaxed text-white/75 md:block">{intro}</p>
     </div>
   </section>
 

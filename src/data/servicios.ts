@@ -116,7 +116,7 @@ export const serviciosEstaticos: Servicio[] = [
       { titulo: 'Parámetros de desempeño en la validación', items: ['Límite de detección y cuantificación', 'Exactitud', 'Precisión (repetibilidad, reproducibilidad)', 'Confirmación de la identidad', 'Intervalo de trabajo', 'Selectividad y especificidad', 'Linealidad', 'Sensibilidad', 'Veracidad (sesgo y recuperación)', 'Robustez'] },
       { titulo: 'Conceptos básicos de incertidumbre', items: ['Conceptos y definiciones de incertidumbre', 'Alcance y aplicación de la incertidumbre', 'Tipos de error (sistemáticos y aleatorios)', 'Diagrama de identificación de las fuentes de incertidumbre (espina de pescado)', 'Ejemplos y ejercicios prácticos'] },
     ],
-    imagen: '/images/laboratorio.webp',
+    imagen: '/images/validacion-metodos.webp',
     orden: 11,
   },
   {
@@ -134,7 +134,7 @@ export const serviciosEstaticos: Servicio[] = [
       { titulo: 'Mejora continua y sus herramientas', items: ['Reingeniería', 'Lean Manufacturing', '5S', 'Hoshin Planning'] },
       { titulo: 'Herramientas para el análisis de causa raíz', items: ['Diagrama de flujo (simbología)', 'Hoja de verificación / recogida de datos', 'Distribución de frecuencia', 'Histogramas', 'Diagrama de Pareto', 'Diagrama de causa y efecto', 'Diagrama de dispersión', 'Gráficos de control por atributos', 'Esquema de los cinco ¿por qué?'] },
     ],
-    imagen: '/images/capacitaciones.webp',
+    imagen: '/images/no-conformidades.webp',
     orden: 12,
   },
   {
@@ -171,7 +171,7 @@ export const serviciosEstaticos: Servicio[] = [
       { titulo: 'Tipos de bombas', items: ['Recíprocas', 'Desplazamiento', 'Presión constante'] },
       { titulo: 'Tipos de detectores', items: ['UV-VIS', 'DAD', 'Fluorescencia', 'Índice de refracción', 'Espectrómetro de masas'] },
     ],
-    imagen: '/images/laboratorio.webp',
+    imagen: '/images/hplc.webp',
     orden: 14,
   },
   {
@@ -189,7 +189,7 @@ export const serviciosEstaticos: Servicio[] = [
       { titulo: 'Manejo del equipo (adaptado al equipo del cliente)', items: ['Identificación', 'Calibración', 'Cuantificación', 'Validación de métodos', 'Mantenimiento de rutina y preventivo', 'Detector de conductividad térmica (TCD)', 'Detector de ionización de llama (FID)', 'Detector de captura electrónica (ECD y µECD)', 'Detector fotométrico de llama (FPD)', 'Detector de nitrógeno y fósforo (NPD)', 'Detector de masa y doble masa'] },
       { titulo: 'Procesamiento de datos y troubleshooting', items: ['Integración de los picos cromatográficos y su optimización (línea base)', 'Análisis cualitativo y cuantitativo', 'Problemas generales de los sistemas cromatográficos', 'Problemas de los sistemas de inyección y columnas', 'Problemas de resolución de los sistemas de detección'] },
     ],
-    imagen: '/images/hero-laboratorio.webp',
+    imagen: '/images/laboratorio.webp',
     orden: 15,
   },
   {
@@ -206,7 +206,7 @@ export const serviciosEstaticos: Servicio[] = [
       { titulo: 'Elementos del equipo ICP-OES', items: ['Nociones y fundamentos de la técnica', 'Análisis de elementos mayoritarios, trazas y ultratrazas', 'Instrumentación de un ICP-OES: equipos secuenciales y simultáneos', 'Sistema de introducción de muestras', 'Visión axial, radial y dual (comparación)', 'Aplicación: análisis de muestras'] },
       { titulo: 'Elementos del equipo ICP-MS', items: ['Nociones y fundamentos de la técnica', 'Controles generales del equipo', 'Encendido del plasma y visualización de parámetros', 'Parámetros de optimización (tuning)', 'Interfaz plasma/vacío', 'Enfoque de iones, celda de colisión/reacción', 'Separación de iones'] },
     ],
-    imagen: '/images/laboratorio.webp',
+    imagen: '/images/icp.webp',
     orden: 16,
   },
 ];
