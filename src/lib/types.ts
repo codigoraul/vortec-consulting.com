@@ -42,3 +42,15 @@ export interface Cliente {
   nombre: string;
   servicio: string;
 }
+
+export interface Noticia {
+  slug: string;
+  titulo: string;
+  /** Fecha ISO (YYYY-MM-DD). */
+  fecha: string;
+  /** Extracto sin HTML para tarjetas y meta description. */
+  resumen: string;
+  /** Contenido HTML. */
+  contenido: string;
+  imagen: string;
+}

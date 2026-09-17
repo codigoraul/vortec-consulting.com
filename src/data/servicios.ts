@@ -85,15 +85,47 @@ export const serviciosEstaticos: Servicio[] = [
     orden: 5,
   },
 
+  {
+    slug: 'evaluacion-de-servicio-de-control-de-plagas',
+    titulo: 'Evaluación de servicio de control de plagas',
+    categoria: 'consultoria',
+    resumen:
+      'Auditoría al proveedor de control de plagas: desratización, desinsectación, control de aves y sanitización, en planta y en sus oficinas.',
+    descripcion:
+      '<p>Auditamos al <strong>proveedor de servicio de control de plagas</strong> tanto en las instalaciones del cliente como en las oficinas del propio proveedor, verificando autorizaciones, competencias del personal, productos utilizados y respaldo documental. Entregamos un informe técnico con hallazgos y plan de acción.</p>',
+    temario: [
+      { titulo: 'Servicios evaluados', items: ['Desratización', 'Desinsectación', 'Control de aves', 'Sanitización'] },
+      { titulo: 'Cumplimiento legal y técnico', items: ['Autorizaciones ante el SEREMI de Salud', 'Competencias técnicas del personal', 'Uso de productos autorizados en el ISP', 'Normativa legal y reglamentaria'] },
+      { titulo: 'Revisión documental', items: ['Evaluación de informes técnicos y planos', 'Informe de hallazgos y recomendaciones'] },
+    ],
+    imagen: '/images/control-plagas.webp',
+    orden: 6,
+  },
+  {
+    slug: 'evaluacion-de-proveedores-de-materias-primas-insumos-y-envases',
+    titulo: 'Evaluación de proveedores de materias primas, insumos y envases',
+    categoria: 'consultoria',
+    resumen:
+      'Auditoría a proveedores nacionales e internacionales para verificar el cumplimiento de especificaciones comerciales y técnicas.',
+    descripcion:
+      '<p>Auditamos a <strong>proveedores nacionales e internacionales</strong> de materias primas, insumos y envases con el objetivo de evaluar el cumplimiento de las especificaciones comerciales y técnicas acordadas. El proceso termina con un informe técnico y un ranking de proveedores que apoya la toma de decisiones de compra.</p>',
+    temario: [
+      { titulo: 'Evaluación documental', items: ['Evaluación de cumplimiento regulatorio', 'Revisión de especificaciones técnicas de calidad física, química y microbiológica', 'Certificaciones vigentes', 'Revisión de hallazgos de auditorías de certificación del período anterior'] },
+      { titulo: 'Evaluación en terreno', items: ['Flujo de proceso y puntos críticos de control', 'Inspección a instalaciones'] },
+      { titulo: 'Cierre', items: ['Informe técnico', 'Evaluación y ranking de proveedores'] },
+    ],
+    imagen: '/images/proveedores-materias-primas.webp',
+    orden: 7,
+  },
   // ───────────────────────── CAPACITACIONES ─────────────────────────
   {
     slug: 'certificaciones-iso-bap-17025-asc-global-gap',
     titulo: 'Certificaciones ISO, BAP, 17025, ASC y GLOBAL G.A.P.',
     categoria: 'capacitacion',
     resumen:
-      'Interpretación de normas y formación de auditores internos para procesos de certificación y acreditación.',
+      'Interpretación de normas y formación de auditores internos: ISO 9001, 14001, 22000, 45001, 50001, ISO/IEC 17025, ASC, RTRS, BAP y GLOBAL G.A.P.',
     descripcion:
-      '<p>Cursos de <strong>interpretación de normas</strong> y formación de auditores internos orientados a organizaciones que buscan certificarse o mantener su certificación en ISO 9001, ISO 14001, NCh-ISO/IEC 17025, BAP, ASC y GLOBAL G.A.P.</p>',
+      '<p>Curso de <strong>interpretación de normas y formación de auditores internos</strong> para procesos de certificación y acreditación: ISO 9001, ISO 14001, ISO 22000, ISO 45001, ISO 50001, ISO/IEC 17025, ASC Feed / Salmon, RTRS, BAP y GLOBAL G.A.P. Incluye interpretación de requisitos, implementación y auditoría interna.</p>',
     dirigidoA: 'Encargados de calidad, jefes de área y responsables de sistemas de gestión.',
     temario: [
       { titulo: 'Contenidos', items: ['Estructura y requisitos de la norma', 'Interpretación práctica de cada cláusula', 'Documentación y registros', 'Auditoría interna: planificación, ejecución e informe', 'Preparación para la auditoría de certificación'] },
@@ -208,5 +240,74 @@ export const serviciosEstaticos: Servicio[] = [
     ],
     imagen: '/images/icp.webp',
     orden: 16,
+  },
+  {
+    slug: 'food-safety-higiene-y-seguridad',
+    titulo: 'Food Safety / Higiene y Seguridad',
+    categoria: 'capacitacion',
+    resumen:
+      'HACCP, ISO 22000 y certificación BRC: identificación de peligros, procedimientos estandarizados e inocuidad alimentaria.',
+    descripcion:
+      '<p>Curso diseñado para los profesionales de la <strong>industria alimentaria</strong> que desean cumplir con los estándares internacionales de inocuidad. Enseñamos por dónde empezar para implementar el sistema de Análisis de Peligros y Puntos Críticos de Control (HACCP), ISO 22000 y gestionar la certificación British Retail Consortium (BRC).</p><p>Aprenderá a identificar peligros críticos, desarrollar procedimientos estandarizados y aplicar estrategias que aseguren la inocuidad y calidad de los alimentos. Al finalizar, podrá mejorar las condiciones de inocuidad de la empresa, impactar positivamente en su reputación y aumentar la confianza de los clientes.</p>',
+    dirigidoA: 'Profesionales de la industria alimentaria: encargados de calidad, inocuidad y producción.',
+    temario: [
+      { titulo: 'Sistemas de inocuidad', items: ['Análisis de Peligros y Puntos Críticos de Control (HACCP)', 'ISO 22000', 'Certificación British Retail Consortium (BRC)'] },
+      { titulo: 'Implementación', items: ['Identificación de peligros críticos', 'Desarrollo de procedimientos estandarizados', 'Estrategias para asegurar la inocuidad y calidad de los alimentos'] },
+    ],
+    imagen: '/images/food-safety.webp',
+    orden: 18,
+  },
+  {
+    slug: 'metrologia-fisica-y-quimica',
+    titulo: 'Metrología física y química',
+    categoria: 'capacitacion',
+    resumen:
+      'Conceptos, errores, verificación y calibración, patrones, certificados de calibración y trazabilidad de las mediciones.',
+    descripcion:
+      '<p>Curso que entrega las bases de la <strong>metrología física y química</strong> aplicada al laboratorio y a la industria: desde los conceptos y el Sistema Internacional de unidades hasta la interpretación de certificados de calibración, patrones y trazabilidad de las mediciones.</p>',
+    dirigidoA: 'Encargados de calidad, jefes de laboratorio, analistas y personal a cargo de equipos de medición.',
+    temario: [
+      { titulo: 'Fundamentos', items: ['Conceptos y definiciones de metrología', 'Alcance y aplicación de la metrología', 'Metrología legal, científica e industrial', 'Medición, errores y metrología', 'Sistema Internacional de unidades de medida'] },
+      { titulo: 'Errores y magnitudes', items: ['Tipos de error (sistemáticos y aleatorios)', 'Diagrama de identificación de las fuentes de error', 'Metrología física (balanzas, termocuplas, micrómetros, etc.)', 'Metrología química (precisión, exactitud, sesgo, etc.)', 'Órdenes de magnitud y cifras significativas', 'Incerteza relativa y absoluta'] },
+      { titulo: 'Verificación y calibración', items: ['Verificación y calibración', 'Información clave en los certificados de calibración entregados por los certificadores', 'Patrones primarios y secundarios (p. ej. tipos de masas patrón y sus clases)', 'Protocolos de calibración y/o verificación'] },
+      { titulo: 'Desempeño instrumental y trazabilidad', items: ['Rango de medida, escala, resolución, estabilidad y deriva', 'Variables independientes y dependientes del operador', 'Clase de exactitud, EMP y repetibilidad instrumental', 'Trazabilidad de las mediciones'] },
+    ],
+    imagen: '/images/metrologia.webp',
+    orden: 19,
+  },
+  {
+    slug: 'espectroscopia-de-absorcion-atomica',
+    titulo: 'Espectroscopía de Absorción Atómica (E.A.A.)',
+    categoria: 'capacitacion',
+    resumen:
+      'Fundamentos, ley de Lambert-Beer, lámparas, nebulizadores, atomización, generación de hidruros y detectores.',
+    descripcion:
+      '<p>Curso para conocer la terminología, definiciones y conceptos relacionados con la <strong>espectroscopía de absorción atómica</strong>: desde sus fundamentos físicos y la relación entre absorción y concentración hasta los componentes del equipo, sus limitaciones y precauciones de uso.</p>',
+    dirigidoA: 'Analistas y jefes de laboratorio que operan o supervisan equipos de absorción atómica.',
+    temario: [
+      { titulo: 'Fundamentos', items: ['Nociones y fundamentos de la espectroscopía de absorción atómica', 'Relación entre absorción y concentración', 'Ley de Lambert-Beer', 'Proceso de absorción atómica', 'Características de la absorción atómica', 'Uso, limitaciones y precauciones', 'Tipos de gases y purezas'] },
+      { titulo: 'Componentes del equipo', items: ['Fuentes radiantes (tipos de lámparas)', 'Monocromador', 'Nebulizadores', 'Quemadores'] },
+      { titulo: 'Sistemas de atomización', items: ['Sistemas continuos', 'Sistemas discretos', 'Sistema electrotérmico (HG)', 'Vapor frío y generación de hidruros'] },
+      { titulo: 'Detectores', items: ['Sistemas de haz simple', 'Sistemas de doble haz'] },
+    ],
+    imagen: '/images/absorcion-atomica.webp',
+    orden: 20,
+  },
+  {
+    slug: 'espectroscopia-infrarroja-nir-ftir',
+    titulo: 'Espectroscopía Infrarroja NIR / FTIR',
+    categoria: 'capacitacion',
+    resumen:
+      'Desde los fundamentos físicos hasta el análisis de datos multivariantes (PCR, PLS) y sus aplicaciones industriales.',
+    descripcion:
+      '<p>Curso que abarca desde los <strong>fundamentos físicos de la espectroscopía NIR / FTIR</strong> hasta la instrumentación, las técnicas de muestreo y el análisis de datos multivariantes (quimiometría), con foco en sus aplicaciones industriales.</p>',
+    dirigidoA: 'Analistas, jefes de laboratorio y personal de control de calidad que utilizan o evalúan incorporar NIR / FTIR.',
+    temario: [
+      { titulo: 'Introducción y fundamentos teóricos', items: ['Espectro electromagnético: ubicación de la región del infrarrojo cercano (NIR) entre el visible y el infrarrojo medio (780 nm – 2500 nm / 12800 cm⁻¹ – 4000 cm⁻¹)', 'Bases moleculares: vibraciones moleculares, sobretonos (overtones) y bandas de combinación de enlaces que contienen hidrógeno (C-H, O-H, N-H, S-H)'] },
+      { titulo: 'Instrumentación y modos de medición', items: ['Componentes del equipo NIR: fuentes de radiación (lámparas halógenas de tungsteno), dispositivos de selección de longitud de onda (redes de difracción, monocromadores, interferómetros FT-NIR) y detectores', 'Técnicas y accesorios de muestreo: reflectancia difusa (sólidos y polvos), transmitancia (líquidos transparentes y láminas), transflectancia e interactancia'] },
+      { titulo: 'Quimiometría y procesamiento de datos', items: ['Preprocesamiento espectral: corrección de línea base, derivadas (1ª y 2ª), normalización y estándar de variabilidad normal (SNV)', 'Calibración multivariante: regresión por componentes principales (PCR) y mínimos cuadrados parciales (PLS)', 'Validación de modelos: coeficiente de determinación (R²), error cuadrático medio de calibración y validación cruzada'] },
+    ],
+    imagen: '/images/nir-ftir.webp',
+    orden: 21,
   },
 ];

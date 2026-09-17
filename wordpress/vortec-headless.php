@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Vortec Headless
  * Description: Registra el tipo de contenido "Servicios" y la página "Datos de contacto" para el sitio Astro de vortec-consulting.com (WordPress headless). No requiere ACF.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      diseñopaginas.cl
  *
  * Instalación: subir esta carpeta/archivo a wp-content/plugins/vortec-headless/ y activar,
@@ -14,6 +14,47 @@
  */
 
 if (!defined('ABSPATH')) exit;
+
+/* ───────────────────────── Entradas → "Noticias" ─────────────────────────
+ * Las entradas estándar de WordPress se usan como noticias del sitio Astro
+ * (GET /wp-json/wp/v2/posts?_embed). Solo cambia el nombre en wp-admin. */
+add_action('init', function () {
+    $pt = get_post_type_object('post');
+    if (!$pt) return;
+    $l = $pt->labels;
+    $l->name               = 'Noticias';
+    $l->singular_name      = 'Noticia';
+    $l->menu_name          = 'Noticias';
+    $l->name_admin_bar     = 'Noticia';
+    $l->add_new            = 'Añadir noticia';
+    $l->add_new_item       = 'Añadir nueva noticia';
+    $l->edit_item          = 'Editar noticia';
+    $l->new_item           = 'Nueva noticia';
+    $l->view_item          = 'Ver noticia';
+    $l->view_items         = 'Ver noticias';
+    $l->search_items       = 'Buscar noticias';
+    $l->not_found          = 'No hay noticias';
+    $l->not_found_in_trash = 'No hay noticias en la papelera';
+    $l->all_items          = 'Todas las noticias';
+    $l->archives           = 'Noticias';
+    $l->attributes         = 'Atributos de la noticia';
+    $l->insert_into_item   = 'Insertar en la noticia';
+    $l->uploaded_to_this_item = 'Subido a esta noticia';
+    $l->filter_items_list  = 'Filtrar noticias';
+    $l->items_list         = 'Lista de noticias';
+    $l->item_published     = 'Noticia publicada.';
+    $l->item_updated       = 'Noticia actualizada.';
+}, 20);
+add_action('admin_menu', function () {
+    global $menu, $submenu;
+    foreach ($menu as $k => $m) { if ($m[2] === 'edit.php') { $menu[$k][0] = 'Noticias'; $menu[$k][6] = 'dashicons-megaphone'; } }
+    if (isset($submenu['edit.php'])) {
+        foreach ($submenu['edit.php'] as $k => $sm) {
+            if ($sm[2] === 'edit.php') $submenu['edit.php'][$k][0] = 'Todas las noticias';
+            if ($sm[2] === 'post-new.php') $submenu['edit.php'][$k][0] = 'Añadir noticia';
+        }
+    }
+});
 
 /* ───────────────────────── CPT: Servicios ───────────────────────── */
 add_action('init', function () {

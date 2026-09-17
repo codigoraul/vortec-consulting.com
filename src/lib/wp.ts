@@ -8,7 +8,7 @@
  * Si WP_URL no está definida, no responde, o no tiene servicios publicados,
  * se usan los datos de src/data/. Todo se resuelve en build (sitio estático).
  */
-import type { Contacto, Modulo, Servicio, Categoria } from './types';
+import type { Contacto, Modulo, Servicio, Categoria, Noticia } from './types';
 import { serviciosEstaticos } from '@/data/servicios';
 import { contactoEstatico } from '@/data/contacto';
 import { withBase } from './url';
@@ -57,7 +57,7 @@ export function parseTemario(texto: string | undefined): Modulo[] {
 function decode(html: string): string {
   return html
     .replace(/&#8211;/g, '–').replace(/&#8217;/g, '’').replace(/&#8220;/g, '“').replace(/&#8221;/g, '”')
-    .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&hellip;/g, '…').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/<[^>]+>/g, '').trim();
 }
 
@@ -127,4 +127,45 @@ export function rutaCategoria(cat: Categoria): string {
 }
 export function rutaServicio(s: Servicio): string {
   return `${rutaCategoria(s.categoria)}/${s.slug}`;
+}
+
+/* ───────────────────────── Noticias (entradas de WP) ───────────────────────── */
+interface WpPost {
+  slug: string;
+  date: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  content: { rendered: string };
+  _embedded?: { 'wp:featuredmedia'?: Array<{ source_url?: string }> };
+}
+
+function mapNoticia(p: WpPost): Noticia {
+  const extracto = decode(p.excerpt?.rendered ?? '').replace(/\s*\[…\]\s*$/, '…').trim();
+  return {
+    slug: p.slug,
+    titulo: decode(p.title.rendered),
+    fecha: p.date.slice(0, 10),
+    resumen: extracto,
+    contenido: p.content.rendered,
+    imagen: p._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/hero-consultoria.webp',
+  };
+}
+
+let cacheNoticias: Noticia[] | null = null;
+
+/** Entradas publicadas de WordPress ("Noticias" en wp-admin), de la más reciente a la más antigua. */
+export async function getNoticias(): Promise<Noticia[]> {
+  if (cacheNoticias) return cacheNoticias;
+  const data = await wpFetch<WpPost[]>('/wp/v2/posts?per_page=50&_embed&status=publish&orderby=date&order=desc');
+  cacheNoticias = (data ?? []).map(mapNoticia);
+  return cacheNoticias;
+}
+
+export function rutaNoticia(n: Noticia): string {
+  return withBase(`/noticias/${n.slug}`);
+}
+
+export function fechaLarga(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }

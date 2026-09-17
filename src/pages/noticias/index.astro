@@ -1,0 +1,45 @@
+---
+import Base from '@/layouts/Base.astro';
+import NoticiaCard from '@/components/NoticiaCard.astro';
+import { getNoticias } from '@/lib/wp';
+import { withBase } from '@/lib/url';
+
+const noticias = await getNoticias();
+const [destacada, ...resto] = noticias;
+---
+
+<Base
+  title="Noticias"
+  description="Noticias, material técnico y novedades de Vortec Consulting: calidad, acreditación de laboratorios, instrumentación analítica e inocuidad alimentaria."
+  image="/images/hero-consultoria.webp"
+>
+  <section class="relative overflow-hidden bg-navy-950 pt-[110px] pb-9 text-white md:pt-[164px] md:pb-14">
+    <img src={withBase('/images/hero-consultoria.webp')} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-55" width="1920" height="1280" />
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-950/45 via-navy-950/60 to-navy-950/85"></div>
+    <div class="container-x relative">
+      <nav aria-label="Migas de pan" class="hidden text-sm text-white/60 md:block"><a href={withBase('/')} class="hover:text-white">Inicio</a> <span class="mx-2">/</span> <span class="text-white">Noticias</span></nav>
+      <h1 class="h-page mt-3">Noticias</h1>
+      <p class="mt-3 hidden max-w-2xl text-[17px] leading-relaxed text-white/75 md:block">Novedades, material técnico y actualidad del sector: calidad, acreditación, instrumentación e inocuidad.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x">
+      {noticias.length === 0 ? (
+        <div class="reveal rounded-3xl border border-line bg-white p-10 text-center">
+          <p class="text-lg font-semibold">Pronto publicaremos nuestras primeras noticias.</p>
+          <p class="mt-2 text-muted">Mientras tanto, conozca nuestras <a href={withBase('/consultorias')} class="text-brand-600 underline underline-offset-2">consultorías</a> y <a href={withBase('/capacitaciones')} class="text-brand-600 underline underline-offset-2">capacitaciones</a>.</p>
+        </div>
+      ) : (
+        <>
+          <NoticiaCard noticia={destacada} destacada />
+          {resto.length > 0 && (
+            <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {resto.map((n, i) => <NoticiaCard noticia={n} delay={(i % 3) * 90} />)}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  </section>
+</Base>

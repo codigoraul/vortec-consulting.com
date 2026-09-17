@@ -48,6 +48,7 @@ const year = new Date().getFullYear();
         <li><a href={`mailto:${contacto.email}`} class="hover:text-brand-400">{contacto.email}</a></li>
         <li>{contacto.direccion}<br />{contacto.comuna}, {contacto.ciudad}</li>
         <li class="text-white/50">{contacto.horario}</li>
+        <li><a href={withBase('/noticias')} class="font-semibold text-brand-400 hover:text-brand-300">Noticias</a></li>
       </ul>
     </div>
   </div>
