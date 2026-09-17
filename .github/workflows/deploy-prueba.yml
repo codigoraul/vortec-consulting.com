@@ -20,6 +20,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Diagnóstico WP_URL (no expone el valor del secret)
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+        run: |
+          if [ -z "$WP_URL" ]; then
+            echo "::warning::El secret WP_URL está vacío o no existe. Las noticias/servicios usarán el fallback estático."
+          else
+            echo "WP_URL está definido (longitud: ${#WP_URL} caracteres)."
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$WP_URL/wp-json/wp/v2/posts?per_page=1" || echo "FALLO_CONEXION")
+            echo "Respuesta HTTP de $WP_URL/wp-json/wp/v2/posts: $code"
+          fi
+
       - name: Build
         run: npm run build
         env:
