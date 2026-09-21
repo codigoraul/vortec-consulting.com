@@ -24,22 +24,6 @@ export const serviciosEstaticos: Servicio[] = [
     orden: 1,
   },
   {
-    slug: 'auditoria-a-proveedores',
-    titulo: 'Auditoría a proveedores',
-    categoria: 'consultoria',
-    resumen:
-      'Evaluación técnica y documental de proveedores para asegurar la calidad y la trazabilidad de su cadena de suministro.',
-    descripcion:
-      '<p>Realizamos <strong>auditorías de segunda parte</strong> a sus proveedores, evaluando sistemas de gestión, procesos productivos, controles de calidad y cumplimiento normativo. Entregamos un informe con hallazgos, riesgos y planes de acción priorizados.</p>',
-    temario: [
-      { titulo: 'Alcance', items: ['Definición de criterios y listas de verificación', 'Planificación y coordinación con el proveedor'] },
-      { titulo: 'Ejecución', items: ['Auditoría documental y en terreno', 'Verificación de registros y trazabilidad'] },
-      { titulo: 'Cierre', items: ['Informe de hallazgos y no conformidades', 'Seguimiento de acciones correctivas'] },
-    ],
-    imagen: '/images/hero-consultoria.webp',
-    orden: 2,
-  },
-  {
     slug: 'optimizacion-de-procesos-industriales',
     titulo: 'Optimización de procesos industriales',
     categoria: 'consultoria',

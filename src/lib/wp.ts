@@ -92,11 +92,14 @@ function mapServicio(s: WpServicio): Servicio {
 let cacheServicios: Servicio[] | null = null;
 let cacheContacto: Contacto | null = null;
 
+// Servicios dados de baja por el cliente: se ocultan aunque sigan publicados en WordPress.
+const SLUGS_EXCLUIDOS = ['auditoria-a-proveedores'];
+
 export async function getServicios(): Promise<Servicio[]> {
   if (cacheServicios) return cacheServicios;
   const data = await wpFetch<WpServicio[]>('/wp/v2/servicios?per_page=100&_embed&orderby=menu_order&order=asc&status=publish');
   const lista = data && data.length ? data.map(mapServicio) : serviciosEstaticos;
-  cacheServicios = [...lista].sort((a, b) => a.orden - b.orden);
+  cacheServicios = [...lista].filter((s) => !SLUGS_EXCLUIDOS.includes(s.slug)).sort((a, b) => a.orden - b.orden);
   return cacheServicios;
 }
 

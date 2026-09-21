@@ -5,7 +5,7 @@ import { withBase } from '@/lib/url';
 
 interface Props { contacto: Contacto }
 const { contacto } = Astro.props;
-const consultorias = (await getServiciosPorCategoria('consultoria')).slice(0, 5);
+const consultorias = (await getServiciosPorCategoria('consultoria'));
 const capacitaciones = (await getServiciosPorCategoria('capacitacion')).slice(0, 5);
 const year = new Date().getFullYear();
 ---
