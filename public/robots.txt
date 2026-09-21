@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /enviar.php
+Disallow: /contacto.php
 Disallow: /gracias
 Disallow: /admin/
 

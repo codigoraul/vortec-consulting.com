@@ -45,21 +45,9 @@ const c = await getContacto();
         <span class="eyebrow">Formulario</span>
         <h2 class="h-section">Solicite una cotización</h2>
         <p class="lead">Complete el formulario y nos pondremos en contacto a la brevedad.</p>
-        <p id="form-error" class="mt-6 hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert"></p>
         <div class="mt-8">
           <ContactForm />
         </div>
-        <script>
-          const err = new URLSearchParams(location.search).get('error');
-          const box = document.getElementById('form-error');
-          if (err && box) {
-            box.textContent = err === '1'
-              ? 'Revise los campos obligatorios (nombre, correo válido y mensaje) e intente nuevamente.'
-              : 'No pudimos enviar el mensaje. Escríbanos por WhatsApp o directamente a nuestro correo.';
-            box.classList.remove('hidden');
-            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        </script>
       </div>
     </div>
   </section>

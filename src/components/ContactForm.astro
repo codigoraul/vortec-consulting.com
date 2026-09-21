@@ -5,9 +5,9 @@ interface Props { servicioInicial?: string }
 const { servicioInicial } = Astro.props;
 const servicios = await getServicios();
 ---
-<form action={withBase('/enviar.php')} method="post" class="grid gap-5 sm:grid-cols-2" id="contact-form" novalidate>
+<form action={withBase('/contacto.php')} method="post" class="grid gap-5 sm:grid-cols-2" id="contact-form" novalidate>
   <!-- Honeypot anti-spam -->
-  <input type="text" name="sitio_web" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
   <div>
     <label for="nombre" class="mb-1.5 block text-sm font-semibold">Nombre y apellido <span class="text-brand-600">*</span></label>
@@ -41,10 +41,14 @@ const servicios = await getServicios();
     <label for="mensaje" class="mb-1.5 block text-sm font-semibold">Mensaje <span class="text-brand-600">*</span></label>
     <textarea id="mensaje" name="mensaje" rows="5" required class="field" placeholder="Cuéntanos qué necesitas: tipo de servicio, número de participantes, plazos…"></textarea>
   </div>
+  <div class="sm:col-span-2 hidden rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" id="contact-form-success" role="status">
+    ¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.
+  </div>
+  <div class="sm:col-span-2 hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" id="contact-form-error" role="alert"></div>
   <div class="sm:col-span-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
     <p class="text-xs text-muted">Responderemos a tu correo en menos de 24 horas hábiles.</p>
-    <button type="submit" class="btn-primary">
-      Enviar mensaje
+    <button type="submit" class="btn-primary" data-original-text="Enviar mensaje">
+      <span data-label>Enviar mensaje</span>
       <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.27 3.13a.5.5 0 01.7-.6l17 8.5a.5.5 0 010 .9l-17 8.5a.5.5 0 01-.7-.6L6 12zm0 0h6"/></svg>
     </button>
   </div>
@@ -61,7 +65,40 @@ const servicios = await getServicios();
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  form?.addEventListener('submit', (e) => {
-    if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); }
+  const successEl = document.getElementById('contact-form-success');
+  const errorEl = document.getElementById('contact-form-error');
+
+  const show = (el: HTMLElement | null, msg?: string) => {
+    if (!el) return;
+    if (msg) el.textContent = msg;
+    el.classList.remove('hidden');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => el.classList.add('hidden'), 10000);
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const label = btn?.querySelector('[data-label]') as HTMLElement | null;
+    successEl?.classList.add('hidden');
+    errorEl?.classList.add('hidden');
+    if (btn) { btn.disabled = true; if (label) label.textContent = 'Enviando…'; }
+
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        show(successEl);
+      } else {
+        show(errorEl, data.message || 'No se pudo enviar el mensaje. Intenta nuevamente.');
+      }
+    } catch {
+      show(errorEl, 'Error de conexión. Por favor intenta nuevamente o escríbenos por WhatsApp.');
+    } finally {
+      if (btn) { btn.disabled = false; if (label) label.textContent = btn.dataset.originalText || 'Enviar mensaje'; }
+    }
   });
 </script>
