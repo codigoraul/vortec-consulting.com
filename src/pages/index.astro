@@ -48,6 +48,9 @@ const pilares = [
   { titulo: 'Instrumentación analítica', texto: 'HPLC, GC-FID/GC-MS, ICP-OES/ICP-MS y NIR: operación, calibración, validación y troubleshooting.', icon: 'M9.75 3v6.9a2.25 2.25 0 01-.66 1.59L4.5 16.08A2.25 2.25 0 006.09 19.5h11.82a2.25 2.25 0 001.59-3.42L14.9 11.5a2.25 2.25 0 01-.65-1.6V3M8.25 3h7.5' },
   { titulo: 'Mejora continua', texto: '5S, Lean Manufacturing, análisis de causa raíz y optimización de procesos con indicadores claros.', icon: 'M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941' },
   { titulo: 'Medio ambiente', texto: 'RILES, residuos peligrosos y normativa ambiental aplicable, con planes de cumplimiento realistas.', icon: 'M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z' },
+  { titulo: 'Evaluación de proveedores de MP, insumos y envases', texto: 'Cumplimiento de especificaciones de compra, ficha técnica, calidad física y química de insumos, instalaciones de proveedores y certificaciones vigentes.', icon: 'M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z' },
+  { titulo: 'Food Safety / Higiene y Seguridad', texto: 'Normas HACCP, BRC, ISO FSSC 22000 e ISO 45000: interpretación, implementación y auditoría interna.', icon: 'M9 12.75L11.25 15 15 9.75M21 12c0 4.556-4.03 8.25-9 8.25S3 16.556 3 12V5.25l9-2.25 9 2.25V12z' },
+  { titulo: 'Evaluación de servicio de control de plagas', texto: 'Normativa legal y reglamentaria, evaluación de competencias técnicas, informes técnicos de aplicación y autorizaciones DS157, SEREMI Salud e ISP.', icon: 'M12 3c-1.657 0-3 1.79-3 4v1H6.75M12 3c1.657 0 3 1.79 3 4v1h2.25M9 8h6v5a3 3 0 11-6 0V8zm-3 3H4.5m13.5 0H21M6.75 16.5L4.5 18.75m12.75-2.25l2.25 2.25M12 21v-3' },
 ];
 
 // Cifras: se calculan desde los datos; ajustar textos si el cliente entrega otras (p. ej. años de experiencia).
@@ -66,22 +69,54 @@ const stats = [
 >
   <HeroSlider slides={slides} />
 
-  <!-- Pilares -->
-  <section class="relative z-10 -mt-14 md:-mt-28">
+  <!-- Pilares (carrusel) -->
+  <section class="relative z-10 -mt-14 md:-mt-28" data-pilares>
     <div class="container-x">
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div class="pilares-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {pilares.map((p, i) => (
-          <div class="card reveal p-6" style={`transition-delay:${i * 80}ms`}>
+          <div class="card reveal shrink-0 snap-start basis-[85%] p-6 sm:basis-[calc(50%-.5rem)] lg:basis-[calc(33.333%-.67rem)]" style={`transition-delay:${Math.min(i, 2) * 80}ms`}>
             <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
               <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d={p.icon}/></svg>
             </div>
-            <h3 class="mt-4 text-lg font-bold">{p.titulo}</h3>
+            <h3 class="mt-4 text-lg font-bold leading-snug">{p.titulo}</h3>
             <p class="mt-2 text-sm leading-relaxed text-muted">{p.texto}</p>
           </div>
         ))}
       </div>
+      <div class="mt-4 flex items-center justify-center gap-3">
+        <button type="button" data-pprev class="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-navy transition hover:border-brand-300 hover:text-brand-600" aria-label="Anterior">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+        </button>
+        <div class="flex gap-2" data-pdots>
+          {pilares.map((_, i) => <button type="button" class="pilares-dot h-2 w-2 rounded-full bg-line transition" data-pgoto={i} aria-label={`Ir al cuadro ${i + 1}`}></button>)}
+        </div>
+        <button type="button" data-pnext class="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-navy transition hover:border-brand-300 hover:text-brand-600" aria-label="Siguiente">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+      </div>
     </div>
   </section>
+
+  <style>
+    .pilares-dot.is-active { background: var(--color-brand-600); width: 1.25rem; }
+  </style>
+  <script>
+    const root = document.querySelector('[data-pilares]');
+    if (root) {
+      const track = root.querySelector<HTMLElement>('.pilares-track')!;
+      const cards = Array.from(track.children) as HTMLElement[];
+      const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-pgoto]'));
+      const step = () => cards[0].offsetWidth + 16;
+      const current = () => Math.round(track.scrollLeft / step());
+      const go = (i: number) => track.scrollTo({ left: Math.max(0, Math.min(i, cards.length - 1)) * step(), behavior: 'smooth' });
+      const paint = () => { const c = current(); dots.forEach((d, i) => d.classList.toggle('is-active', i === c)); };
+      root.querySelector('[data-pprev]')?.addEventListener('click', () => go(current() - 1));
+      root.querySelector('[data-pnext]')?.addEventListener('click', () => go(current() + 1));
+      dots.forEach((d) => d.addEventListener('click', () => go(Number(d.dataset.pgoto))));
+      track.addEventListener('scroll', paint, { passive: true });
+      paint();
+    }
+  </script>
 
   <!-- Nosotros -->
   <section id="nosotros" class="section scroll-mt-20">
