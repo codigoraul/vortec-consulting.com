@@ -24,7 +24,7 @@ const schema = {
 };
 ---
 
-<Base title={s.titulo} description={s.resumen} image={s.imagen}>
+<Base title={s.categoria === 'capacitacion' ? `Curso ${s.titulo} — Capacitación en Chile` : (/consultor/i.test(s.titulo) ? `${s.titulo} en Chile` : `Consultoría en ${s.titulo} — Chile`)} description={s.resumen} image={s.imagen}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <section class="relative overflow-hidden bg-navy-950 pt-[110px] pb-9 text-white md:pt-[164px] md:pb-14">
