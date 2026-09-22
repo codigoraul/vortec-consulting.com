@@ -12,8 +12,10 @@ $SITE_URL = (isset($_SERVER['HTTP_HOST']) && is_string($_SERVER['HTTP_HOST']) &&
 
 $TO_EMAILS_BASE = 'contacto@vortec-consulting.com, codigoraul@gmail.com';
 $TO_EMAIL   = $TO_EMAILS_BASE;
-$FROM_EMAIL = 'contacto@vortec-consulting.com'; // debe existir en cPanel (mismo dominio) para no caer en spam
-$FROM_NAME  = 'Vortec Consulting';
+// El correo de vortec-consulting.com vive en Google Workspace y su SPF no autoriza al hosting,
+// así que se envía desde un dominio propio (SPF con la IP de este servidor) y Reply-To al cliente.
+$FROM_EMAIL = 'web@xn--diseopaginas-dhb.cl';
+$FROM_NAME  = 'Vortec Consulting Web';
 $BCC_EMAILS = '';
 $CONFIG_USED_PATH = '';
 
