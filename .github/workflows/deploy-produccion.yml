@@ -39,6 +39,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # FTPS (FTP sobre TLS): con FTP plano el hosting cortaba la conexión
+          # (ECONNRESET) a mitad de la subida completa del sitio.
+          protocol: ftps
           local-dir: ./dist/
           server-dir: ./
           # No borra archivos en el servidor que no estén en dist/ (WordPress

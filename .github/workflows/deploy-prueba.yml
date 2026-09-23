@@ -1,8 +1,8 @@
 name: Deploy a vortec-consulting.cl/prueba
 
+# Solo manual (Actions → este workflow → "Run workflow"): la web ya está en producción
+# (deploy-produccion.yml corre en cada push); /prueba queda para probar cambios antes.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 # Mismo grupo que deploy-produccion.yml: se encolan para no usar la cuenta FTP a la vez.
