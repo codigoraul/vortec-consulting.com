@@ -1,9 +1,10 @@
 name: Deploy a vortec-consulting.com (producción)
 
-# Disparo manual únicamente (Actions → este workflow → "Run workflow"):
-# esto sube directo a la raíz del dominio, a diferencia de deploy-prueba.yml
-# que corre automático en cada push y sube a /prueba.
+# Corre automático en cada push a main (sube a la raíz del dominio) y también
+# se puede disparar a mano desde Actions → este workflow → "Run workflow".
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
