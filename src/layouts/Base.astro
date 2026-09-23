@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
 import { getContacto } from '@/lib/wp';
 import { withBase } from '@/lib/url';
+import type { SeoYoast } from '@/lib/types';
 
 interface Props {
   title: string;
@@ -13,16 +14,22 @@ interface Props {
   /** Header transparente sobre el hero (solo en el home). */
   heroOverlay?: boolean;
   noindex?: boolean;
+  /** SEO de Yoast (servicio o noticia) tomado de WordPress; tiene prioridad sobre title/description/image. */
+  seo?: SeoYoast;
 }
 
-const { title, description, image = '/images/hero-laboratorio.webp', heroOverlay = false, noindex = false } = Astro.props;
+const { title, description, image = '/images/hero-laboratorio.webp', heroOverlay = false, noindex = false, seo } = Astro.props;
 const contacto = await getContacto();
 const site = Astro.site ?? new URL('https://vortec-consulting.com');
-const canonical = new URL(Astro.url.pathname, site);
-const ogImage = new URL(withBase(image), site);
-const fullTitle = title.includes('Vortec') ? title : `${title} | Vortec Consulting`;
+const canonical = seo?.canonical ? new URL(seo.canonical) : new URL(Astro.url.pathname, site);
+const ogImage = seo?.ogImage ? new URL(seo.ogImage) : new URL(withBase(image), site);
+const metaTitle = seo?.title || title;
+const metaDescription = seo?.description || description;
+const fullTitle = metaTitle.includes('Vortec') ? metaTitle : `${metaTitle} | Vortec Consulting`;
 
-const orgSchema = {
+// Si Yoast SEO está activo en WordPress, usa el grafo de schema.org que genera (Organization,
+// WebPage, BreadcrumbList, etc.); si no, un schema básico armado a mano como respaldo.
+const orgSchema = seo?.schema ?? {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: contacto.empresa,
@@ -38,7 +45,7 @@ const orgSchema = {
     addressCountry: 'CL',
   },
   areaServed: 'Chile',
-  description,
+  description: metaDescription,
 };
 ---
 
@@ -48,7 +55,7 @@ const orgSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
     <meta name="keywords" content="consultoría laboratorios Chile, acreditación ISO 17025, NCh-ISO/IEC 17025, certificación ISO 9001, HACCP, FSSC 22000, inocuidad alimentaria, validación de métodos analíticos, incertidumbre de medición, buenas prácticas de laboratorio, capacitación HPLC, cromatografía gaseosa, ICP-OES ICP-MS, absorción atómica, NIR FTIR, metrología, 5S Lean Manufacturing, optimización de procesos industriales, evaluación de proveedores, control de plagas, RILES, consultoría ambiental, capacitación in-company Santiago" />
     <meta name="geo.region" content="CL-RM" />
     <meta name="geo.placename" content="Santiago, Chile" />
@@ -62,7 +69,7 @@ const orgSchema = {
     <meta property="og:locale" content="es_CL" />
     <meta property="og:site_name" content="Vortec Consulting" />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />

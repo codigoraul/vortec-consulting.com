@@ -5,6 +5,16 @@ export interface Modulo {
   items: string[];
 }
 
+/** Datos SEO tomados de Yoast SEO (campo `yoast_head_json` de la REST API de WP), si el plugin está activo. */
+export interface SeoYoast {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  /** Grafo de schema.org que genera Yoast (Organization, WebPage, BreadcrumbList, etc.). */
+  schema?: unknown;
+}
+
 export interface Servicio {
   slug: string;
   titulo: string;
@@ -20,6 +30,8 @@ export interface Servicio {
   /** Ruta de imagen (public/ o URL absoluta de WordPress). */
   imagen: string;
   orden: number;
+  /** Presente solo si Yoast SEO está activo en WordPress. */
+  seo?: SeoYoast;
 }
 
 export interface Contacto {
@@ -53,4 +65,6 @@ export interface Noticia {
   /** Contenido HTML. */
   contenido: string;
   imagen: string;
+  /** Presente solo si Yoast SEO está activo en WordPress. */
+  seo?: SeoYoast;
 }

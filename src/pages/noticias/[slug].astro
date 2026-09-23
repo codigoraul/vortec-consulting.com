@@ -16,7 +16,7 @@ const contacto = await getContacto();
 const urlCompartir = new URL(rutaNoticia(n), Astro.site ?? 'https://vortec-consulting.com').toString();
 ---
 
-<Base title={n.titulo} description={n.resumen} image={n.imagen}>
+<Base title={n.titulo} description={n.resumen} image={n.imagen} seo={n.seo}>
   <section class="relative overflow-hidden bg-navy-950 pt-[110px] pb-9 text-white md:pt-[164px] md:pb-14">
     <img src={withBase(n.imagen)} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-45" width="1920" height="1280" />
     <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/75 to-navy-950/40"></div>

@@ -17,6 +17,11 @@ export default defineConfig({
   // evitando el choque entre el archivo "consultorias.html" y la carpeta "consultorias/"
   // (con las fichas de cada servicio) que causaba 403 / bucles de redirección en Apache.
   build: { format: 'directory' },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // /gracias es noindex (confirmación de formulario): no debe aparecer en el sitemap.
+      filter: (page) => !page.endsWith('/gracias'),
+    }),
+  ],
   vite: { plugins: [tailwindcss()] },
 });

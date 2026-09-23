@@ -8,7 +8,7 @@
  * Si WP_URL no está definida, no responde, o no tiene servicios publicados,
  * se usan los datos de src/data/. Todo se resuelve en build (sitio estático).
  */
-import type { Contacto, Modulo, Servicio, Categoria, Noticia } from './types';
+import type { Contacto, Modulo, Servicio, Categoria, Noticia, SeoYoast } from './types';
 import { serviciosEstaticos } from '@/data/servicios';
 import { contactoEstatico } from '@/data/contacto';
 import { withBase } from './url';
@@ -61,6 +61,27 @@ function decode(html: string): string {
     .replace(/<[^>]+>/g, '').trim();
 }
 
+/** Campo que agrega Yoast SEO a la REST API de WP (si el plugin está activo) en cualquier
+ *  post type con show_in_rest, incluido el CPT "servicio" y las entradas ("Noticias"). */
+interface WpYoastHeadJson {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  og_image?: Array<{ url?: string }>;
+  schema?: unknown;
+}
+
+function mapYoast(y: WpYoastHeadJson | undefined): SeoYoast | undefined {
+  if (!y) return undefined;
+  return {
+    title: y.title,
+    description: y.description,
+    canonical: y.canonical,
+    ogImage: y.og_image?.[0]?.url,
+    schema: y.schema,
+  };
+}
+
 interface WpServicio {
   slug: string;
   menu_order: number;
@@ -69,6 +90,7 @@ interface WpServicio {
   excerpt?: { rendered: string };
   meta?: { categoria?: string; resumen?: string; dirigido_a?: string; temario?: string; imagen_url?: string };
   _embedded?: { 'wp:featuredmedia'?: Array<{ source_url?: string }> };
+  yoast_head_json?: WpYoastHeadJson;
 }
 
 function mapServicio(s: WpServicio): Servicio {
@@ -86,6 +108,7 @@ function mapServicio(s: WpServicio): Servicio {
     temario: parseTemario(s.meta?.temario),
     imagen: imagenWp || (cat === 'capacitacion' ? '/images/capacitaciones.webp' : '/images/consultorias.webp'),
     orden: s.menu_order ?? 0,
+    seo: mapYoast(s.yoast_head_json),
   };
 }
 
@@ -140,6 +163,7 @@ interface WpPost {
   excerpt: { rendered: string };
   content: { rendered: string };
   _embedded?: { 'wp:featuredmedia'?: Array<{ source_url?: string }> };
+  yoast_head_json?: WpYoastHeadJson;
 }
 
 function mapNoticia(p: WpPost): Noticia {
@@ -151,6 +175,7 @@ function mapNoticia(p: WpPost): Noticia {
     resumen: extracto,
     contenido: p.content.rendered,
     imagen: p._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/hero-consultoria.webp',
+    seo: mapYoast(p.yoast_head_json),
   };
 }
 
