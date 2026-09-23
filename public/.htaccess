@@ -1,6 +1,6 @@
 # vortec-consulting.com — Astro estático en cPanel (Apache)
 Options -Indexes
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
