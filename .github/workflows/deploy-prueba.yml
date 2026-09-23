@@ -5,6 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Mismo grupo que deploy-produccion.yml: se encolan para no usar la cuenta FTP a la vez.
+concurrency:
+  group: ftp-vortec
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest

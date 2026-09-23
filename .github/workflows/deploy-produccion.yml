@@ -7,6 +7,12 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Mismo grupo que deploy-prueba.yml: los dos deploys usan la misma cuenta FTP y el
+# hosting corta la conexión (ECONNRESET) si corren a la vez, así que se encolan.
+concurrency:
+  group: ftp-vortec
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
